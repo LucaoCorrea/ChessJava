@@ -4,8 +4,7 @@ import java.awt.Color;
 
 import boardgame.Board;
 import boardgame.Position;
-import pieces.King;
-import pieces.Rook;
+import pieces.*;
 
 public class ChessMatch {
     private Board board;
@@ -25,9 +24,25 @@ public class ChessMatch {
         return mat;
     }
 
+    private void placeNewPiece(char column, int row, ChessPiece piece) {
+        board.placePiece(piece, new ChessPosition(column, row).toPosition());
+    }
+
     private void initialSetup() {
-        board.placePiece(new Rook(board, chess.Color.WHITE), new Position(2, 1));
-        board.placePiece(new King(board, chess.Color.BLACK), new Position(0, 4));
-        board.placePiece(new King(board, chess.Color.WHITE), new Position(7, 4));
+        placeNewPiece('a', 1, new Rook(board, chess.Color.WHITE));
+        placeNewPiece('b', 2, new Rook(board, chess.Color.WHITE));
+        placeNewPiece('c', 2, new Rook(board, chess.Color.WHITE));
+        placeNewPiece('d', 2, new Rook(board, chess.Color.WHITE));
+        placeNewPiece('e', 3, new Rook(board, chess.Color.WHITE));
+        placeNewPiece('f', 1, new Rook(board, chess.Color.WHITE));
+        placeNewPiece('g', 1, new King(board, chess.Color.WHITE));
+
+        placeNewPiece('a', 7, new Rook(board, chess.Color.BLACK));
+        placeNewPiece('b', 8, new Rook(board, chess.Color.BLACK));
+        placeNewPiece('c', 7, new Rook(board, chess.Color.BLACK));
+        placeNewPiece('d', 8, new Rook(board, chess.Color.BLACK));
+        placeNewPiece('e', 7, new Rook(board, chess.Color.BLACK));
+        placeNewPiece('f', 7, new Rook(board, chess.Color.BLACK));
+        placeNewPiece('g', 8, new King(board, chess.Color.BLACK));
     }
 }
