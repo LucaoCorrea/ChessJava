@@ -3,6 +3,7 @@ package chess;
 import java.awt.Color;
 
 import boardgame.Board;
+import boardgame.Piece;
 import boardgame.Position;
 import pieces.*;
 
@@ -22,6 +23,30 @@ public class ChessMatch {
             }
         }
         return mat;
+    }
+
+    public ChessPiece performChessMove(ChessPosition sourcePosition, ChessPosition targetPosition) {
+        Position source = sourcePosition.toPosition();
+        Position target = targetPosition.toPosition();
+        validateSourcePosition(source);
+        Piece capturedPiece = makeMove(source, target);
+        return (ChessPiece) capturedPiece;
+    }
+
+    private Piece makeMove(Position source, Position target) {
+        Piece p = board.removPiece(source);
+        Piece capturedPiece = board.removPiece(target);
+        board.placePiece(p, target);
+        return capturedPiece;
+    }
+
+    private void validateSourcePosition(Position position) {
+        if (!board.thereIsAPiece(position)) {
+            throw new ChessException("Não há nenhuma peça na posição de origem.");
+        }
+        if (!board.piece(position).isThereAnyPossibleMove()) {
+            throw new ChessException("Não existe movimentos possíveis para esta peça.");
+        }
     }
 
     private void placeNewPiece(char column, int row, ChessPiece piece) {
