@@ -9,10 +9,15 @@ import pieces.*;
 
 public class ChessMatch {
     private Board board;
+    private boolean check;
 
     public ChessMatch() {
         board = new Board(8, 8);
         initialSetup();
+    }
+
+    public boolean getCheck() {
+        return check;
     }
 
     public ChessPiece[][] getPieces() {
@@ -73,7 +78,7 @@ public class ChessMatch {
         placeNewPiece('d', 2, new Rook(board, chess.Color.WHITE));
         placeNewPiece('e', 3, new Rook(board, chess.Color.WHITE));
         placeNewPiece('f', 1, new Rook(board, chess.Color.WHITE));
-        placeNewPiece('g', 1, new King(board, chess.Color.WHITE));
+        placeNewPiece('g', 1, new King(board, chess.Color.WHITE, this));
 
         placeNewPiece('a', 7, new Rook(board, chess.Color.BLACK));
         placeNewPiece('b', 8, new Rook(board, chess.Color.BLACK));
@@ -81,6 +86,6 @@ public class ChessMatch {
         placeNewPiece('d', 8, new Rook(board, chess.Color.BLACK));
         placeNewPiece('e', 7, new Rook(board, chess.Color.BLACK));
         placeNewPiece('f', 7, new Rook(board, chess.Color.BLACK));
-        placeNewPiece('g', 8, new King(board, chess.Color.BLACK));
+        placeNewPiece('g', 8, new King(board, chess.Color.BLACK, this));
     }
 }
