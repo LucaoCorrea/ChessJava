@@ -88,7 +88,6 @@ public class ChessMatch {
 
         ChessPiece movedPiece = (ChessPiece) board.piece(target);
 
-        // #specialmove promotion
         promoted = null;
         if (movedPiece instanceof Pawn) {
             if ((movedPiece.getColor() == Color.WHITE && target.getRow() == 0)
@@ -119,7 +118,7 @@ public class ChessMatch {
 
     public ChessPiece replacePromotedPiece(String type) {
         if (promoted == null) {
-            throw new IllegalStateException("There is no piece to be promoted");
+            throw new IllegalStateException("Não há nenhuma peça para ser promovida");
         }
         if (!type.equals("B") && !type.equals("N") && !type.equals("R") & !type.equals("Q")) {
             return promoted;
@@ -157,7 +156,6 @@ public class ChessMatch {
             capturedPieces.add(capturedPiece);
         }
 
-        // #specialmove castling kingside rook
         if (p instanceof King && target.getColumn() == source.getColumn() + 2) {
             Position sourceT = new Position(source.getRow(), source.getColumn() + 3);
             Position targetT = new Position(source.getRow(), source.getColumn() + 1);
@@ -166,7 +164,6 @@ public class ChessMatch {
             rook.increaseMoveCount();
         }
 
-        // #specialmove castling queenside rook
         if (p instanceof King && target.getColumn() == source.getColumn() - 2) {
             Position sourceT = new Position(source.getRow(), source.getColumn() - 4);
             Position targetT = new Position(source.getRow(), source.getColumn() - 1);
@@ -175,7 +172,6 @@ public class ChessMatch {
             rook.increaseMoveCount();
         }
 
-        // #specialmove en passant
         if (p instanceof Pawn) {
             if (source.getColumn() != target.getColumn() && capturedPiece == null) {
                 Position pawnPosition;
@@ -204,7 +200,6 @@ public class ChessMatch {
             piecesOnTheBoard.add(capturedPiece);
         }
 
-        // #specialmove castling kingside rook
         if (p instanceof King && target.getColumn() == source.getColumn() + 2) {
             Position sourceT = new Position(source.getRow(), source.getColumn() + 3);
             Position targetT = new Position(source.getRow(), source.getColumn() + 1);
@@ -213,7 +208,6 @@ public class ChessMatch {
             rook.decreaseMoveCount();
         }
 
-        // #specialmove castling queenside rook
         if (p instanceof King && target.getColumn() == source.getColumn() - 2) {
             Position sourceT = new Position(source.getRow(), source.getColumn() - 4);
             Position targetT = new Position(source.getRow(), source.getColumn() - 1);
@@ -222,7 +216,6 @@ public class ChessMatch {
             rook.decreaseMoveCount();
         }
 
-        // #specialmove en passant
         if (p instanceof Pawn) {
             if (source.getColumn() != target.getColumn() && capturedPiece == enPassantVulnerable) {
                 ChessPiece pawn = (ChessPiece) board.removePiece(target);
@@ -239,13 +232,13 @@ public class ChessMatch {
 
     private void validateSourcePosition(Position position) {
         if (!board.thereIsAPiece(position)) {
-            throw new ChessException("There is no piece on source position");
+            throw new ChessException("Não há nenhuma peça na posição de origem");
         }
         if (currentPlayer != ((ChessPiece) board.piece(position)).getColor()) {
             throw new ChessException("The chosen piece is not yours");
         }
         if (!board.piece(position).isThereAnyPossibleMove()) {
-            throw new ChessException("There is no possible moves for the chosen piece");
+            throw new ChessException("Não há movimentos possíveis para a peça escolhida");
         }
     }
 
@@ -272,7 +265,7 @@ public class ChessMatch {
                 return (ChessPiece) p;
             }
         }
-        throw new IllegalStateException("There is no " + color + " king on the board");
+        throw new IllegalStateException("Não há " + color + "Rei no tabuleiro");
     }
 
     private boolean testCheck(Color color) {
