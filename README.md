@@ -67,7 +67,7 @@ Contribuições são bem-vindas! Siga estes passos:
 
 ## Prints 🐼
 ![UI](https://raw.githubusercontent.com/LucaoCorrea/ChessJava/refs/heads/main/screenshots/UI.png)
-
+---
 ![Pawn Movement](https://raw.githubusercontent.com/LucaoCorrea/ChessJava/refs/heads/main/screenshots/pawn.png)
 
 ## Licença 🦍
