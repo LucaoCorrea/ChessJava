@@ -49,15 +49,7 @@ Um jogo de xadrez completo desenvolvido em Java, com interface de linha de coman
     
 
 ## Estrutura do Projeto 🐯
-
-ChessJava/
-├── bin/            # Arquivos compilados
-├── src/            # Código fonte
-│   ├── Board.java  # Lógica do tabuleiro
-│   ├── Piece.java  # Classe base das peças
-│   ├── *Subclasses de Piece* # Implementações específicas de cada peça
-│   └── ChessGame.java # Classe principal com loop do jogo
-└── README.md       # Este arquivo
+![Project](https://raw.githubusercontent.com/LucaoCorrea/ChessJava/refs/heads/main/screenshots/project.png)
 
 ## Contribuição 🐵
 
